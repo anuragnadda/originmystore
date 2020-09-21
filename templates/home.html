@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>Home</title>
+</head>
+<style>
+	body,
+	html {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		background: #7abecc !important;
+	}
+	.navbar {
+  overflow: hidden;
+  background-color: rgb(99, 173, 164);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: rgba(65, 119, 88, 0.719);
+}
+</style>
+<body>
+	
+	{% block content %}
+    <div class="navbar">
+        <a class="active" href="new_arrivals/">NEW ARRIVALS</a>
+		<a href="men/">MEN</a>
+		<a href="women/">WOMEN</a>
+		<a href="kids/">KIDS</a>
+		<a href="about_us/" style="float: right;">ABOUT US</a>
+        <a href="login/" style="float: right;">LOGIN</a>
+	</div>
+	{% endblock %}
+	<div class="container">
+		<h2>Home Page</h2>  
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		  <!-- Indicators -->
+		  <ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+			<li data-target="#myCarousel" data-slide-to="4"></li>
+			<li data-target="#myCarousel" data-slide-to="5"></li>
+			<li data-target="#myCarousel" data-slide-to="6"></li>
+		  </ol>
+	  
+		  <!-- Wrapper for slides -->
+		  <div class="carousel-inner" style="width: 100%; max-height: 500px !important;">
+			<div class="item active">
+			  <img src="media/images/radhu1.jpeg" alt="Women Collections" style="width: 100%;" >
+			</div>
+
+			<div class="item">
+				<img src="media/images/radhu2.png" alt="Women Collections" style="width:100%;">
+			</div>
+	  
+			<div class="item">
+			  <img src="media/images/TWS_Maroon_1.jpg" alt="Women Collections" style="width:100%;">
+			</div>
+		  
+			<div class="item">
+			  <img src="media/images/LW5CRBS_030210_2.jpeg" alt="Women Collections" style="width:100%;">
+			</div>
+		  
+
+		  <div class="item">
+			<img src="media/images/zara.jpg" alt="Women Collections" style="width:100%;">
+		  </div>
+
+		  <div class="item">
+			<img src="media/images/red-mini-infinity-short-dress-for-women.webp" alt="Women Collections" style="width:100%;">
+		  </div>
+
+		  <div class="item">
+			<img src="media/images/sirikit.webp" alt="Women Collections" style="width:100%;">
+		  </div>
+
+		</div>
+	  
+		  <!-- Left and right controls -->
+		  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			<span class="sr-only">Previous</span>
+		  </a>
+		  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+			<span class="sr-only">Next</span>
+		  </a>
+		</div>
+	  </div>
+	
+	  
+	
+
+
+</body>
+</html>

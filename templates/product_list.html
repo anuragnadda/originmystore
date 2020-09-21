@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+    <title>Product Listing</title>
+<style>
+
+body{
+    background-color:rgba(109, 161, 131, 0.719);
+}    
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  margin-top: 40px;
+  background-color: rgb(99, 173, 164);
+}
+.cards {
+    float: right;
+
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: rgb(25, 105, 129);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+section {
+    display: flex;
+    float: left;
+}
+div {
+    flex-grow: 1;
+}
+
+.navbar {
+  background-color: rgb(99, 173, 164);
+ 
+}
+
+.navbar a {
+  float: left;
+ 
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: rgba(65, 119, 88, 0.719);
+}
+
+</style>
+</head>
+<body>
+  {% block content %}
+    <div class="navbar">
+        <a class="active" href="/">Home</a>
+        <a href="#contact">Contact</a>
+        <li>Hello, {{user.first_name}}</li>
+        <a href="/logout/">logout</a>
+        <a href="../add_to_cart/"><span id="cart">0 </span> View Cart</a>
+        
+    </div>
+    
+    <h2 style="text-align:center">Product Card</h2>
+    <div class="row mx-2">
+     {% for product in product_list %}
+      <div class="col-md-3">
+          <img src="{{ product.image.url }}" alt="Denim Jeans" style="width:100%">
+          <h1>{{ product.name }}</h1>
+          <p class="price">&#8377;{{ product.price }}</p>
+          <p>{{ product.description }}</p>
+          
+          <form method="post" action="{% url 'addtocart' %}">
+              {% csrf_token %}
+              <input type="hidden" name="productid" value="{{product.id}}">
+              <button id = "Pid{{product.id}}" class="cart" type="submit">Add to cart</button>
+          </form>
+      </div>
+    
+    {% endfor %} 
+  </div>
+  {% endblock content %}
+
+  {% block js %}
+  <script>
+   console.log("working");
+   if(sessionStorage.getItem('cart') == null){
+     var cart = {};
+   }
+
+   else{
+     cart = JSON.parse(sessionStorage.getItem('cart'));
+     document.getElementById('cart').innerHTML = Object.keys(cart).length;
+
+   }
+
+
+   $('.cart').click(function(){
+     console.log('clicked');
+     var idstr = this.id.toString();
+     console.log(idstr);
+     if (cart[idstr] != undefined){
+       cart[idstr] = cart[idstr] + 1;
+     }
+     else{
+       cart[idstr] = 1;
+     }
+     console.log(cart);
+     sessionStorage.setItem('cart', JSON.stringify(cart));
+        });
+  </script>
+  {% endblock %}
+</body>
+</html>
